@@ -1,0 +1,109 @@
+:root {
+  --bg: #0f1218;
+  --panel: #171c26;
+  --line: #262e3d;
+  --fg: #d8deea;
+  --muted: #8a94a6;
+  --accent: #5aa7ff;
+  --warn: #ffb454;
+  --bad: #ff6b6b;
+  --ok: #46d39a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.5 "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1 { font-size: 16px; margin: 0; font-weight: 600; }
+h2 { font-size: 13px; color: var(--muted); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.hud { display: flex; gap: 20px; color: var(--muted); }
+.hud b { color: var(--fg); }
+
+main { display: flex; gap: 16px; padding: 16px 20px; align-items: flex-start; }
+
+canvas {
+  background: #10151f;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  width: min(70vh, 900px);
+  height: min(70vh, 900px);
+}
+
+#panel {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 86vh;
+  overflow-y: auto;
+}
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 13px; }
+label b { color: var(--fg); float: right; }
+
+input[type="range"] { width: 100%; }
+input[type="checkbox"] { align-self: flex-start; }
+
+select, button {
+  background: #1f2735;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { border-color: var(--accent); }
+button:disabled { opacity: 0.4; cursor: default; }
+
+.btnrow { display: flex; gap: 6px; }
+.btnrow button { flex: 1; padding: 6px 4px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { text-align: center; padding: 3px 2px; color: var(--muted); }
+td { color: var(--fg); }
+
+#log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#log li {
+  background: #121722;
+  border-left: 3px solid var(--accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--muted);
+}
+#log li.warn { border-left-color: var(--warn); }
+#log li.bad { border-left-color: var(--bad); }

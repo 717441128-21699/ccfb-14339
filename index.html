@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>锁步房间服务模拟</title>
+    <link rel="stylesheet" href="/src/ui/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>RTS 锁步房间服务 · Worker 模拟</h1>
+      <div class="hud" id="hud">
+        <span>帧 <b id="frame">0</b></span>
+        <span>模拟时间 <b id="simms">0</b> ms</span>
+        <span>状态校验 <b id="hash">—</b></span>
+        <span>幽灵指令 <b id="ghost">0</b></span>
+      </div>
+    </header>
+
+    <main>
+      <canvas id="canvas" width="900" height="900"></canvas>
+
+      <aside id="panel">
+        <section>
+          <h2>对局</h2>
+          <label>每队单位数
+            <select id="units">
+              <option value="200">200(共 400)</option>
+              <option value="500">500(共 1000)</option>
+              <option value="1000" selected>1000(共 2000)</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="auto" checked /> 自动玩家输入</label>
+          <button id="restart">重开对局</button>
+          <button id="pause">暂停</button>
+        </section>
+
+        <section>
+          <h2>链路(玩家 1)</h2>
+          <label>基础单向延迟 <b id="latv">25ms</b>
+            <input type="range" id="lat" min="0" max="200" step="5" value="25" />
+          </label>
+          <label>抖动 <b id="jitv">5ms</b>
+            <input type="range" id="jit" min="0" max="60" step="1" value="5" />
+          </label>
+          <label>丢包率 <b id="lossv">0%</b>
+            <input type="range" id="loss" min="0" max="30" step="1" value="0" />
+          </label>
+          <div class="btnrow">
+            <button id="good">好网预设(25ms)</button>
+            <button id="bad">差网预设(150ms)</button>
+          </div>
+          <div class="btnrow">
+            <button id="rtt50">RTT 50→300 场景</button>
+          </div>
+          <div class="btnrow">
+            <button id="disconnect">掉线(AI 接管)</button>
+            <button id="reconnect" disabled>恢复连接</button>
+          </div>
+          <button id="script">注入脚本爆发</button>
+        </section>
+
+        <section>
+          <h2>玩家状态</h2>
+          <table id="stats">
+            <thead>
+              <tr><th>P</th><th>RTT</th><th>抖动</th><th>延迟帧</th><th>补空</th><th>状态</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>事件日志</h2>
+          <ul id="log"></ul>
+        </section>
+      </aside>
+    </main>
+
+    <script type="module" src="/src/ui/main.ts"></script>
+  </body>
+</html>
